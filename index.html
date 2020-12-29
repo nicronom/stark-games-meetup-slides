@@ -27,23 +27,287 @@
 			<div class="slides">
 				<section data-background-image="assets/bg1.png">Проект Ёлочка. Отдел бэкенда. Избранное</section>
 				<section data-background-image="assets/bg1.png">
-					<p>
-						Обзор продукта:
-						<ul>
-							<li>платформы: VK, OK, FB, Mobile, Yandex, Sosedi</li>
-							<li>дальше все данные - для ВКонтакте, Елочка 2021 (релиз состоялся 11 ноября)</li>
-							<li>аудитория - 71% женщин, DAU 350 тыс, MAU 3.3 млн</li>
-							<li>с 10:00 до 22:00 примерно одинаковый уровень активности, вечером чуть больше</li>
-							<li>RPS - в среднем 800, в активное время - 1230</li>
-						</ul>
-					</p>
+					<p>Обзор продукта:</p>
+					<ul>
+						<li>платформы: VK, OK, FB, Mobile, Yandex, Sosedi</li>
+						<li>дальше все данные - для ВКонтакте, Елочка 2021 (релиз состоялся 11 ноября)</li>
+						<li>аудитория - 71% женщин, DAU 350 тыс, MAU 3.3 млн</li>
+						<li>с 10:00 до 22:00 примерно одинаковый уровень активности, вечером чуть больше</li>
+						<li>RPS - в среднем 800, в активное время - 1230</li>
+					</ul>
 				</section>
 				<section data-background-image="assets/bg1.png">
-					Особенности проекта:
+					<p>Особенности проекта:</p>
 					<ul>
 						<li>новое приложение каждый год</li>
 						<li>еженедельный (и чаще) деплой</li>
 						<li>жесткие сроки</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg1.png">
+					<p>Деплой и продакшн-окружение:</p>
+					<ul>
+						<li>виртуалки на выделенных серверах, X экземлпяров php-fpm, Y экземпляров nginx, мини-CDN со статикой</li>
+						<li>процесс деплоя через Jenkins и Ansistrano</li>
+						<li>билд-сервис</li>
+						<li>части приложения могут деплоиться независимо друг от друга</li>
+						<li>версионирование</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg2.png">
+					<p>Клиентские логи:</p>
+					<ul>
+						<li>clogs, "client logs", "силоги", "клиентские логи"</li>
+						<li>Mysql, Redis</li>
+						<li>ограничение входящего траффика</li>
+						<li>проблема с размером ответа на game/init, обрезка</li>
+						<li>добавление хостов</li>
+						<li>как пользуемся</li>
+						<li>есть, куда дорабатывать</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg2.png">
+					<p>Серверные логи:</p>
+					<ul>
+						<li>graylog</li>
+						<li>не только exceptions</li>
+						<li>как пользуемся</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg2.png">
+					<p>Сетевые проблемы:</p>
+					<ul>
+						<li>падение запроса статического ресурса, падение запроса к серверу</li>
+						<li>повторы запросов</li>
+						<li>идемпотентность</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg2.png">
+					<p>Консистентность между различными хранилищами данных:</p>
+					<ul>
+						<li>общий подход</li>
+						<li>MongoDb и две коллекции</li>
+						<li>MongoDb и MySQL</li>
+						<li>MongoDb и Redis</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg2.png">
+					<p>Monit:</p>
+					<ul>
+						<li>Pinba</li>
+						<li>Clickhouse</li>
+						<li>как пользуемся</li>
+						<li>доработки</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg3.png">
+					<p>Технические работы:</p>
+					<ul>
+						<li>предупреждение игроков</li>
+						<li>заглушка</li>
+						<li>отключение отдельных шард</li>
+						<li>не отдавать 5xx</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg3.png">
+					<p>Workflow-inspector:</p>
+					<ul>
+						<li>правила работы с git</li>
+						<li>подключение проектов</li>
+						<li>Slim framework</li>
+						<li>веб-часть и phar-файл</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg3.png">
+					<p>Пуш-сервис:</p>
+					<ul>
+						<li>"ws-chat", "чат", "пуш-сервис", "нотификации"</li>
+						<li>появился с кланами, затем использован в других местах</li>
+						<li>WebSockets, NodeJS, Typescript</li>
+						<li>масштабирование</li>
+						<li>жизнь в продакшн</li>
+						<li>оповещение о новой версии приложения</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg3.png">
+					<p>User tracker:</p>
+					<ul>
+						<li>детальный трекинг процесса загрузки приложения</li>
+						<li>WebSockets, NodeJS, Typescript</li>
+						<li>Vertica</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg3.png">
+					<p>Откаты игроков и баны:</p>
+					<ul>
+						<li>актуально для всех проектов</li>
+						<li>донатеров нельзя банить</li>
+						<li>автоматизация откатов</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg4.png">
+					<p>Одноразовые скрипты:</p>
+					<ul>
+						<li>отдельный файл скрипта мимо git</li>
+						<li>отдельный экшн контроллера cli</li>
+						<li>автокоррекция состояния на game/init</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg4.png">
+					<p>Кодогенерация:</p>
+					<ul>
+						<li>bin/perf </li>
+						<li>конфиги supervisord</li>
+						<li>конфиги личных приложений</li>
+						<li>есть, куда развивать</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg4.png">
+					<p>RabbitMQ и воркеры:</p>
+					<ul>
+						<li>перезапуск раз в час</li>
+						<li>реплики</li>
+						<li>устойчивость к битым данным и неадекватным значениям</li>
+						<li>обработка "хвоста"</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg4.png">
+					<p>Улада (/ulada):</p>
+					<ul>
+						<li>авторизация через Jira</li>
+						<li>пользуются все</li>
+						<li>логи всех действий</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg5.png">
+					<p>Игровой баланс:</p>
+					<ul>
+						<li>гейм-дизайнеры и таблицы</li>
+						<li>почему XML</li>
+						<li>"программирование" на XML</li>
+						<li>разный баланс для разных игроков</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg5.png">
+					<p>Примечательные механики:</p>
+					<ul>
+						<li>кланы</li>
+						<li>мастерская</li>
+						<li>сравнение полянок</li>
+						<li>игровые события с мини-рейтингом</li>
+						<li>мини-игра в жанре "tower defense"</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg5.png">
+					<p>Календарные события в игре:</p>
+					<ul>
+						<li>поддерживают интерес</li>
+						<li>цикл разработки</li>
+						<li>всегда два периода - основной и дополнительный</li>
+						<li>подчистка данных спустя несколько недель после окончания</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg5.png">
+					<p>Ближайшие планы:</p>
+					<ul>
+						<li>Pinba 2</li>
+						<li>Composer 2</li>
+						<li>badoo/liveprof</li>
+						<li>новая версия сервиса авторизации - jira-auth</li>
+						<li>более удобное окружение для разработки</li>
+						<li>развитие автотестов</li>
+						<li>сброс кэша в кластере</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg6.png">
+					<p>Более отдаленные планы:</p>
+					<ul>
+						<li>Ёлочке 22 - быть</li>
+						<li>PHP 8</li>
+						<li>упор на мобильную платформу</li>
+						<li>развитие статического анализа кода</li>
+						<li>миграции Mongo</li>
+						<li>размеры документов, ограничение выборки</li>
+						<li>DDD</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg6.png">
+					<p>На уровне бессрочных размышлений:</p>
+					<ul>
+						<li>устойчивость к отказам инфраструктуры</li>
+						<li>геораспределенность</li>
+						<li>динамический размер кластера</li>
+						<li>"мультизапросы"</li>
+						<li>нагрузочное тестирование</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg6.png">
+					<p>Проекты:</p>
+					<ul>
+						<li>Ёлочка</li>
+						<li>Казино</li>
+						<li>Pool clash</li>
+						<li>Secret project</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg6.png">
+					<p>Языки (и соответствующий им стек технологий):</p>
+					<ul>
+						<li>PHP</li>
+						<li>TypeScript и JavaScript</li>
+						<li>Go</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg7.png">
+					<p>Perf:</p>
+					<ul>
+						<li>идея</li>
+						<li>устаревание решений</li>
+						<li>документация</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg7.png">
+					<p>Формальные задачи отдела:</p>
+					<ul>
+						<li>соблюдение договоренностей по срокам</li>
+						<li>корректность и качество кода</li>
+						<li>качество инженерных решений</li>
+						<li>экономия вычислительных ресурсов</li>
+						<li>ведение базы знаний</li>
+						<li>наблюдение за состоянием приложения</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg7.png">
+					<p>Неформальные задачи отдела,<br>взаимодействие с другими:</p>
+					<ul>
+						<li>общий подход</li>
+						<li>QA</li>
+						<li>техническая поддержка, community</li>
+						<li>гейм-дизайн, продюсеры</li>
+						<li>девопс, админы</li>
+						<li>арт</li>
+						<li>маркетинг</li>
+						<li>аналитика</li>
+						<li>менеджмент</li>
+						<li>топ-менеджмент</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg7.png">
+					<p>Философское (или не очень):</p>
+					<ul>
+						<li>единый фреймворк <small>vs</small> фреймворк под проект</li>
+						<li>единый code style <small>vs</small> code style под проект</li>
+						<li>степень совместного владения кодом</li>
+					</ul>
+				</section>
+				<section data-background-image="assets/bg8.png">
+					<p>Пожелания:</p>
+					<ul>
+						<li>делиться мнениями, идеями, информацией</li>
+						<li>инженерный подход</li>
+						<li>подстраховывать другие отделы</li>
+						<li>рациональность</li>
+						<li>инициативность</li>
 					</ul>
 				</section>
 			</div>
