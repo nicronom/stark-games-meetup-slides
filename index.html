@@ -20,109 +20,205 @@
 			font-size: 35px;
 			background-color: transparent;
 		}
+
+		p {
+			font-size: 45px;
+		}
 	</style>
 	<body>
 
 		<div class="reveal">
 			<div class="slides">
-				<section data-background-image="assets/bg9.jpg">Проектирование мини-игры в Ёлочке 2022</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Цели:</p>
+				<section data-background-image="assets/bg1.png"> </section>
+				<section data-background-image="assets/bg1a.png">
+					<p>История</p>
 					<ul>
-						<li>экономия ресурсов (траффик, железо)</li>
-						<li>масштабирование (всплески активности игроков)</li>
-						<li>стабильность (количество жалоб, логов об ошибках)</li>
-						<li>приемлемая скорость обмена информацией</li>
+						<li>[Релиз 23 декабря 2021] - [первый коммит 25 ноября 2019 года] = ~2 года</li>
+						<li>Команда менялась и комплектовалась</li>
+						<li>Перенос кода слотов внутрь PHP-приложения</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Из целей следует:</p>
+				<section data-background-image="assets/bg1a.png">
+					<p>Сегодняшний день</p>
 					<ul>
-						<li>клиент не можеть быть "наивным" (прогнозирование + согласование)</li>
-						<li>как можно более простая модель данных (экономим процессор, упрощаем разруливание edge cases между клиентом и сервером)</li>
-						<li>как можно более редкая отправка сообщений (экономим траффик)</li>
+						<li>https://ok.ru/game/mycasino (конечная цель - мобильные платформы)</li>
+						<li>~40к запросов в день (из них 30к спинов слота), всего ~7к юзеров, 300-350 сессий в день</li>
+						<li>Команда - 2 парт-тайм бэкенд-инженера, 2 (+1) инженера на игровом клиенте, GD, продюсер, PM и много art-специалистов</li>
+						<li>Еженедельные правки и релизы</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Простая модель данных:</p>
+
+				<section data-background-image="assets/bg1a.png">
+					<p>Окружение для разработки</p>
 					<ul>
-						<li>конвейер - прямая длиной X (может измеряться в пикселях для простоты)</li>
-						<li>подарки - движущиеся точки на прямой конвейера</li>
-						<li>эльфы - матрица точек, никак не связана с конвейером геометрически (пока единственное исключение - волна/попкорн, см. дальше)</li>
-						<li>выстрел и попадание - один и тот же момент времени</li>
+						<li>ddev (https://github.com/drud/ddev)</li>
+						<li>docker-compose.yml для автотестов</li>
+						<li>Postman</li>
+						<li>Личных приложений нет</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Из модели следует:</p>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Библиотеки</p>
 					<ul>
-						<li>баланс и клиент должны брать за точку отсчета скорее момент попадания, а не момент выстрела</li>
-						<li>модель данных должна быть эквивалентной на клиенте и сервере (общий рандом и последовательность вызовов рандома; прочие вычисления)</li>
-						<li>визуалом клиент рулит сам (непротиворечиво с моделью данных под капотом)</li>
+						<li>Perf 1.5/casino</li>
+						<li>DI-контейнер (https://php-di.org)</li>
+						<li>middlewares (tuupola/cors-middleware), RequestHandlerInterface</li>
+						<li>События (https://event.thephpleague.com/3.0)</li>
+						<li>illuminate/collections</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Какими данными нужно обмениваться клиенту и серверу:</p>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Архитектура. Инфраструктурный слой</p>
 					<ul>
-						<li>покупка эльфа</li>
-						<li>улучшение типа эльфа</li>
-						<li>мердж эльфов</li>
-						<li>дисконнект партнера (чтобы сделать паузу)</li>
-						<li>полное текущее состояние поля (только в случае дисконнекта и возврата в игру)</li>
+						<li>MVC, thin controllers, инъекция зависимостей</li>
+						<li>MongoDB ODM</li>
+						<li>Кэш https://www.php-cache.com</li>
+						<li>interface vs implementation</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Как ложатся на предложенную модель некоторые существующие эльфы:</p>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Архитектура. Слой бизнес-логики</p>
 					<ul>
-						<li>попкорн / волна. Пока единственный кейс, где придется связать геометрически и в реальных размерах конвейер и область эльфов, чтобы нормально рассчитать урон. Возможно получится вывести формулу
-						</li>
-						<li>пушкарь / AOE. Разброс описывается длиной отрезка на прямой конвейера. Подарки (точки), которые попали в этот отрезок, получают урон (каждая точка разный)</li>
+						<li>DDD-like</li>
+						<li>Механики и сущности</li>
+						<li>Связность и события (команды)</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Читеры:</p>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Код</p>
 					<ul>
-						<li>кажется, отслеживать теперь их нужно будет на лету, а не в конце игры. И не присылать партнеру невалидное действие (покупка, улучшение, мердж)</li>
+						<li>PHP 8</li>
+						<li>45к строк (6к логических), 857 классов (224 пространства имен), 116 интерфейсов</li>
+						<li>functional programming style</li>
+						<li>final + dg/bypass-finals</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Последовательность прототипов:</p>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Статический анализ кода</p>
 					<ul>
-						<li>#1 - забиваем на конвейер, делаем генерацию шоколадок раз в N секунд. Делаем поддержку всех операций с эльфами и обмен этой инфой между клиентом и сервером</li>
-						<li>#2 - добавляем движущиеся по конвейеру подарки и выстрелы эльфов без всяких хитрых особенностей</li>
-						<li>#3 (?) - добавляем всевозможные особенности эльфов</li>
+						<li>Со старта проекта</li>
+						<li>Арсенал - PHPStan, Phan, Psalm, PHP CS-Fixer, PHP Mess Detector, etc</li>
+						<li>На уровне CI/CD пока нет</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Служебный инструментарий:</p>
+
+				<section data-background-image="assets/bg2.png">
+					<p>Игровой баланс</p>
 					<ul>
-						<li>без него будет сложно (или нет? сейчас ведь его нет)</li>
-						<li>клиент-серверная пауза (не путать с паузой из доков), и затем дамп состояний клиента и сервера в json с возможностью загрузить их в игру и начать играть с сохраненного состояния (! вдвоем)</li>
-						<li>запись игровой сессии с возможностью воспроизведения как в плеере и получения дампа любого момента записанной сессии</li>
+						<li>Google-таблицы</li>
+						<li>Парсер</li>
+						<li>JSON-файл</li>
+						<li>Лежит в репозитории PHP-приложения</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Обзор архитектуры</p>
-					<img src="assets/td-architecture.jpg">
+
+				<section data-background-image="assets/bg2.png">
+					<p style="font-size: 30px;">
+						Протокол<br/>
+						JSON Patch (IETF RFC 6902)</p>
+					<img src="assets/jsonpatch.png">
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Обзор взаимодействия</p>
-					<img src="assets/td-sequence.png" width="550">
-				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Как будем делать первый прототип:</p>
+
+				<section data-background-image="assets/bg2.png">
+					<p>Формирование патча</p>
 					<ul>
-						<li>напишем (и будем поддерживать) документацию по модели данных</li>
-						<li>напишем (и будем поддерживать) документацию протокола общения клиента и сервера</li>
-						<li>напишем код прототипа</li>
+						<li>Сохраняем содержимое ответа game/init в MongoDb (строка ~100 Кб)</li>
+						<li>В конце каждого запроса берем значение из базы, формируем новое и вычисляем разницу</li>
+						<li>По разнице (diff) строим JSON Patch</li>
+						<li>Пути оптимизации</li>
 					</ul>
 				</section>
-				<section data-background-image="assets/factory1.jpg">
-					<p>Что сделаем в дев-инфраструктуре для первого прототипа:</p>
+
+				<section data-background-image="assets/bg2.png">
+					<p>Слот-машины. Ожидание</p>
+					<img src="assets/slots1.png">
+				</section>
+
+				<section data-background-image="assets/bg2.png">
+					<p>Слот-машины. Реальность</p>
+					<img src="assets/slots2.png">
+				</section>
+
+				<section data-background-image="assets/bg2.png">
+					<p>Слот-машины</p>
 					<ul>
-						<li>на первое время объединим сервис матчмейкинга и гейм-сервер (поэтому админам ничего делать не нужно)</li>
-						<li>сделаем ровно один инстанс сервера мини-игр (админам нужно будет настроить его доступность в офисной сети и минимальный деплой, присутствие в Rancher)</li>
+						<li>RTP - важный показатель (математика, наборы барабанов, проверка, подстройка)</li>
+						<li>Кажущаяся простота реализации</li>
+						<li>Бонусные игры</li>
 					</ul>
 				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Автотесты</p>
+					<ul>
+						<li>Codeception</li>
+						<li>unit tests (6к строк, 1к логических, 200 сценариев)</li>
+						<li>API tests (11к строк, 2.2к логических, 290 сценариев)</li>
+						<li>helpers (1.8к строк, 300 логических, 38 классов)</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Качество автотестов</p>
+					<ul>
+						<li>Ответственность разработчика</li>
+						<li>Не гарантируют отсутствие багов</li>
+						<li>Кейс № 1 - максимальная стадия достижения</li>
+						<li>Кейс № 2 - изменение набора доступных ставок</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Деплой, инфраструктура</p>
+					<ul>
+						<li>Kubernetes</li>
+						<li>Jenkins, автосборка для дев-окружений</li>
+						<li>Процесс деплоя: клиент, сервер, тех. работы</li>
+						<li>Версионирования нет</li>
+						<li>Миграции MySQL и MongoDb</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Прочее</p>
+					<ul>
+						<li>Админка</li>
+						<li>Логи с клиента (https://client-logs.stark.games)</li>
+						<li>Graylog</li>
+						<li>Мониторинг - Monit, Pinba</li>
+						<li>Профайлинг - Blackfire, LiveProf</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Данные и их хранение</p>
+					<ul>
+						<li>MongoDb</li>
+						<li>MySQL</li>
+						<li>Redis</li>
+						<li>Горизонтальное масштабирование</li>
+						<li>Оплоги - Kafka, Clickhouse</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg3.png">
+					<p>Планы</p>
+					<ul>
+						<li>Два пакета правок, выход из песочницы</li>
+						<li>Турниры (https://oss.redis.com/redistimeseries)</li>
+						<li>Детальное изучение производительности (нагрузочное тестирование - k6.io)</li>
+					</ul>
+				</section>
+
+				<section data-background-image="assets/bg1a.png">
+					<p style="font-size: 85px;">Спасибо за внимание!</p>
+				</section>
+
 			</div>
 		</div>
 
