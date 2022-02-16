@@ -17,206 +17,110 @@
 		.reveal .slide-number {
 			left: 10px;
 			top: 10px;
-			font-size: 35px;
+			font-size: 30px;
 			background-color: transparent;
 		}
 
 		p {
-			font-size: 45px;
+			font-size: 35px;
 		}
+
+		li {
+			font-size: 28px;
+		}
+
 	</style>
 	<body>
 
 		<div class="reveal">
 			<div class="slides">
-				<section data-background-image="assets/bg1.png"> </section>
-				<section data-background-image="assets/bg1a.png">
-					<p>История</p>
-					<ul>
-						<li>[Релиз 23 декабря 2021] - [первый коммит 25 ноября 2019 года] = ~2 года</li>
-						<li>Команда менялась и комплектовалась</li>
-						<li>Перенос кода слотов внутрь PHP-приложения</li>
-					</ul>
+				<section data-background-image="assets/bg1.jpg">
+					<h3>Эффективность коммуникации в рамках проектов и команд</h3>
 				</section>
-				<section data-background-image="assets/bg1a.png">
-					<p>Сегодняшний день</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Разбираемся с терминологией</p>
 					<ul>
-						<li>https://ok.ru/game/mycasino (конечная цель - мобильные платформы)</li>
-						<li>~40к запросов в день (из них 30к спинов слота), всего ~7к юзеров, 300-350 сессий в день</li>
-						<li>Команда - 2 парт-тайм бэкенд-инженера, 2 (+1) инженера на игровом клиенте, GD, продюсер, PM и много art-специалистов</li>
-						<li>Еженедельные правки и релизы</li>
+						<li>Межличностная коммуникация - процесс обмена сообщениями и их интерпретация (кол-во участников процесса - любое)</li>
+						<li>Эффективность коммуникации - насколько соотносится цель с результатом, насколько велики затраты на получение результата</li>
+						<li>Уровень содержания и уровень отношения</li>
 					</ul>
-				</section>
-
-				<section data-background-image="assets/bg1a.png">
-					<p>Окружение для разработки</p>
+					<p>Цели:</p>
 					<ul>
-						<li>ddev (https://github.com/drud/ddev)</li>
-						<li>docker-compose.yml для автотестов</li>
-						<li>Postman</li>
-						<li>Личных приложений нет</li>
+						<li>Изменения в знаниях</li>
+						<li>Изменения в поведении</li>
+						<li>Изменения в мировоззрении/установках (этого сегодня не касаемся)</li>
 					</ul>
+					<p style="font-size: 28px">Не касаемся также документации и проведения митингов</p>
 				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Библиотеки</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Понятность языка</p>
+					<img src="assets/slide1.png">
 					<ul>
-						<li>Perf 1.5/casino</li>
-						<li>DI-контейнер (https://php-di.org)</li>
-						<li>middlewares (tuupola/cors-middleware), RequestHandlerInterface</li>
-						<li>События (https://event.thephpleague.com/3.0)</li>
-						<li>illuminate/collections</li>
+						<li>Непонимание между отделами или внутри тоже?</li>
+						<li>Это проблема? Что можно сделать?</li>
+						<li>Более глубокие уровни непонимания (разный уровень абстракций)</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg3.png">
-					<p>Архитектура. Инфраструктурный слой</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Полнота сообщения</p>
+					<img src="assets/slide2.png">
 					<ul>
-						<li>MVC, thin controllers, инъекция зависимостей</li>
-						<li>MongoDB ODM</li>
-						<li>Кэш https://www.php-cache.com</li>
-						<li>interface vs implementation</li>
+						<li>Контекст (о чем вообще речь)</li>
+						<li>Общая картина и детали (противодействие https://xyproblem.info)</li>
+						<li>Помощь собеседнику в переключении внимания</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg3.png">
-					<p>Архитектура. Слой бизнес-логики</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Конкретность желаемого</p>
+					<img src="assets/slide3.png">
 					<ul>
-						<li>DDD-like</li>
-						<li>Механики и сущности</li>
-						<li>Связность и события (команды)</li>
+						<li>Как убедиться во взаимопонимании?</li>
+						<li>Критерии достижения цели</li>
+						<li>Объяснение причин</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg3.png">
-					<p>Код</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Взаимоуважение</p>
+					<img src="assets/slide4.png">
 					<ul>
-						<li>PHP 8</li>
-						<li>45к строк (6к логических), 857 классов (224 пространства имен), 116 интерфейсов</li>
-						<li>functional programming style</li>
-						<li>final + dg/bypass-finals</li>
+						<li>Экономия времени и внимания собеседника</li>
+						<li>Дружелюбность (смайлы важны?)</li>
+						<li>Вежливость</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg3.png">
-					<p>Статический анализ кода</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Реакция на сообщение</p>
+					<img src="assets/slide5.png">
 					<ul>
-						<li>Со старта проекта</li>
-						<li>Арсенал - PHPStan, Phan, Psalm, PHP CS-Fixer, PHP Mess Detector, etc</li>
-						<li>На уровне CI/CD пока нет</li>
+						<li>Отсутствие (причина, неопределенность)</li>
+						<li>Обязательность (оперативность)</li>
+						<li>Выполнение обещаний</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg2.png">
-					<p>Игровой баланс</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Прочие аспекты</p>
 					<ul>
-						<li>Google-таблицы</li>
-						<li>Парсер</li>
-						<li>JSON-файл</li>
-						<li>Лежит в репозитории PHP-приложения</li>
+						<li>Своевременность передачи информации (возможность маневра)</li>
+						<li>Потеря информации (передача по цепочке, отсутствие follow up в общедоступном месте)</li>
+						<li>Место ведения коммуникации (личка, общий чат, трекер задач) - где баланс?</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg2.png">
-					<p style="font-size: 30px;">
-						Протокол<br/>
-						JSON Patch (IETF RFC 6902)</p>
-					<img src="assets/jsonpatch.png">
-				</section>
-
-				<section data-background-image="assets/bg2.png">
-					<p>Формирование патча</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p>Аудио и видео</p>
 					<ul>
-						<li>Сохраняем содержимое ответа game/init в MongoDb (строка ~100 Кб)</li>
-						<li>В конце каждого запроса берем значение из базы, формируем новое и вычисляем разницу</li>
-						<li>По разнице (diff) строим JSON Patch</li>
-						<li>Пути оптимизации</li>
+						<li>Видео - где баланс?</li>
+						<li>Качество связи (оборудования)</li>
 					</ul>
 				</section>
 
-				<section data-background-image="assets/bg2.png">
-					<p>Слот-машины. Ожидание</p>
-					<img src="assets/slots1.png">
-				</section>
-
-				<section data-background-image="assets/bg2.png">
-					<p>Слот-машины. Реальность</p>
-					<img src="assets/slots2.png">
-				</section>
-
-				<section data-background-image="assets/bg2.png">
-					<p>Слот-машины</p>
-					<ul>
-						<li>RTP - важный показатель (математика, наборы барабанов, проверка, подстройка)</li>
-						<li>Кажущаяся простота реализации</li>
-						<li>Бонусные игры</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Автотесты</p>
-					<ul>
-						<li>Codeception</li>
-						<li>unit tests (6к строк, 1к логических, 200 сценариев)</li>
-						<li>API tests (11к строк, 2.2к логических, 290 сценариев)</li>
-						<li>helpers (1.8к строк, 300 логических, 38 классов)</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Качество автотестов</p>
-					<ul>
-						<li>Ответственность разработчика</li>
-						<li>Не гарантируют отсутствие багов</li>
-						<li>Кейс № 1 - максимальная стадия достижения</li>
-						<li>Кейс № 2 - изменение набора доступных ставок</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Деплой, инфраструктура</p>
-					<ul>
-						<li>Kubernetes</li>
-						<li>Jenkins, автосборка для дев-окружений</li>
-						<li>Процесс деплоя: клиент, сервер, тех. работы</li>
-						<li>Версионирования нет</li>
-						<li>Миграции MySQL и MongoDb</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Прочее</p>
-					<ul>
-						<li>Админка</li>
-						<li>Логи с клиента (https://client-logs.stark.games)</li>
-						<li>Graylog</li>
-						<li>Мониторинг - Monit, Pinba</li>
-						<li>Профайлинг - Blackfire, LiveProf</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Данные и их хранение</p>
-					<ul>
-						<li>MongoDb</li>
-						<li>MySQL</li>
-						<li>Redis</li>
-						<li>Горизонтальное масштабирование</li>
-						<li>Оплоги - Kafka, Clickhouse</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg3.png">
-					<p>Планы</p>
-					<ul>
-						<li>Два пакета правок, выход из песочницы</li>
-						<li>Турниры (https://oss.redis.com/redistimeseries)</li>
-						<li>Детальное изучение производительности (нагрузочное тестирование - k6.io)</li>
-					</ul>
-				</section>
-
-				<section data-background-image="assets/bg1a.png">
-					<p style="font-size: 85px;">Спасибо за внимание!</p>
+				<section data-background-image="assets/bg1.jpg">
+					<p style="font-size: 60px;">Всем спасибо!</p>
 				</section>
 
 			</div>
